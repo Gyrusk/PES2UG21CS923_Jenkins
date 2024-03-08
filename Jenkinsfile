@@ -4,24 +4,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Compiling the C++ code...'
-                sh 'g++ -o output hello.cpp'
+                echo 'Introducing an intentional error...'
+                // Modify the g++ command to introduce an error
+                sh 'g++ -o output hello.cpp -nonexistent-option'
             }
         }
 
-        stage('Test') {
-            steps {
-                echo 'Running the compiled program...'
-                sh './output'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the application...'
-                // Add deployment steps here
-            }
-        }
+        // ... (rest of the stages remain the same)
     }
 
     post {
